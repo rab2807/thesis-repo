@@ -47,7 +47,8 @@ def merge_files(folder):
 
 if __name__ == '__main__':
     super_merged = []
-    folders = [f for f in os.listdir('.') if os.path.isdir(f)]
+    # folders = [f for f in os.listdir('./data') if os.path.isdir(f)]
+    folders = [os.path.join('./data', f) for f in os.listdir('./data') if os.path.isdir(os.path.join('./data', f))]
 
     # sort the folders
     folders.sort(key=lambda x: int(re.findall(r'\d+', x)[0]))
@@ -65,4 +66,4 @@ if __name__ == '__main__':
     super_merged = super_merged.transpose(0, 4, 1, 2, 3)
     print(super_merged.shape)
 
-    np.save('merged.npy', super_merged)
+    np.save('./merged.npy', super_merged)
